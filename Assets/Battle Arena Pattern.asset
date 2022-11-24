@@ -1,0 +1,316 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3695bac85a0454c479bacb5f33ecfcbc, type: 3}
+  m_Name: Battle Arena Pattern
+  m_EditorClassIdentifier: 
+  _cellarMap:
+    rid: 3484217601712455698
+  _viewPalette:
+    rid: 3484217601712455699
+  _viewLayers:
+    rid: 3484217601712455700
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3484217601712455698
+      type: {class: CellarMap, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _palette:
+          rid: 3484217601712455701
+        _layers:
+          rid: 3484217601712455702
+    - rid: 3484217601712455699
+      type: {class: ViewPalette, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _selectedCellTypeViewData:
+          rid: 3484217601712455709
+        _palette:
+          rid: 3484217601712455701
+        _skeys:
+        - rid: 3484217601712455703
+        - rid: 3484217601712455710
+        _svalues:
+        - rid: 3484217601712455704
+        - rid: 3484217601712455709
+        _viewDataOrder:
+        - rid: 3484217601712455704
+        - rid: 3484217601712455709
+    - rid: 3484217601712455700
+      type: {class: ViewLayers, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _layers:
+          rid: 3484217601712455702
+        _viewData:
+        - rid: 3484217601712455705
+        - rid: 3484217601712455707
+        _activeLayerViewData:
+          rid: 3484217601712455707
+    - rid: 3484217601712455701
+      type: {class: Palette, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _scellTypes:
+        - rid: 3484217601712455703
+        - rid: 3484217601712455710
+    - rid: 3484217601712455702
+      type: {class: CellarMapLayers, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _layersWidth: 10
+        _layersHeight: 10
+        _layers:
+        - rid: 3484217601712455706
+        - rid: 3484217601712455708
+    - rid: 3484217601712455703
+      type: {class: CellType, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _typeName: land
+    - rid: 3484217601712455704
+      type: {class: CellTypeViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+        _type:
+          rid: 3484217601712455703
+    - rid: 3484217601712455705
+      type: {class: LayerViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _layerIndex: 0
+        _layerName: surface
+        _layer:
+          rid: 3484217601712455706
+    - rid: 3484217601712455706
+      type: {class: CellarMapLayer, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _serializableWidth: 10
+        _serializableLayer:
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: 3484217601712455703
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+    - rid: 3484217601712455707
+      type: {class: LayerViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _layerIndex: 1
+        _layerName: entities
+        _layer:
+          rid: 3484217601712455708
+    - rid: 3484217601712455708
+      type: {class: CellarMapLayer, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _serializableWidth: 10
+        _serializableLayer:
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455710
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455710
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: 3484217601712455710
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+        - rid: -2
+    - rid: 3484217601712455709
+      type: {class: CellTypeViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _color: {r: 0.46226418, g: 0, b: 0, a: 1}
+        _type:
+          rid: 3484217601712455710
+    - rid: 3484217601712455710
+      type: {class: CellType, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
+      data:
+        _typeName: main-hero
