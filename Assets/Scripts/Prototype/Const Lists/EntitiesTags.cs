@@ -16,5 +16,9 @@ namespace IUP.BattleSystemPrototype
         /// находиться только одна сущность с тегом поверхности (Surface).
         /// </summary>
         public const string Surface = "surface";
+        /// <summary>
+        /// Тег главного героя.
+        /// </summary>
+        public const string MainHero = "main hero";
     }
 }

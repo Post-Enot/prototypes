@@ -4,25 +4,30 @@ using UnityEngine.Tilemaps;
 
 namespace IUP.BattleSystemPrototype
 {
-    public sealed class LandPresenter : MonoBehaviour, ICellEntityPresenter
+    public sealed class LandPresenter : CellEntityPresenter
     {
         [SerializeField] private Tile _landTile;
-        [SerializeField] private RuleTile _borderTile;
+        [SerializeField] private Tile _borderTile;
 
-        public ICellEntity Entity { get; private set; }
-        public IBattleArenaPresenter BattleArenaPresenter { get; private set; }
-        public Transform Transform => transform;
-        public Vector2Int Coordinate => Entity.Coordinate;
+        public override ICellEntity Entity => _land;
 
-        public void Init(IBattleArenaPresenter battleArenaPresenter, Vector2Int coordinate)
+        private Land _land;
+
+        public override void Init(
+            IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
+            Vector2Int coordinate)
         {
-            Init(battleArenaPresenter, coordinate.x, coordinate.y);
+            Init(battleArenaPresenter, eventBus, coordinate.x, coordinate.y);
         }
 
-        public void Init(IBattleArenaPresenter battleArenaPresenter, int x, int y)
+        public override void Init(
+            IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
+            int x,
+            int y)
         {
-            Entity = new Land(x, y);
-            BattleArenaPresenter = battleArenaPresenter;
+            _land = new Land(x, y, battleArenaPresenter.BattleArena);
             Vector3Int tileCoordinate = battleArenaPresenter.CellCoordinateToTileCoordinate(x, y);
             tileCoordinate.z = 1;
             battleArenaPresenter.Tilemap.SetTile(tileCoordinate, _landTile);

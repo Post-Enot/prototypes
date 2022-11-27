@@ -8,7 +8,7 @@ namespace IUP.Toolkits.BattleSystem
         /// <summary>
         /// Размер стороны клетки в юнитах (ед. измерения Unity).
         /// </summary>
-        public float CellSizeInUnit { get; }
+        public float CellSize { get; }
         /// <summary>
         /// Ширина боевой арены в клетках.
         /// </summary>
@@ -18,7 +18,7 @@ namespace IUP.Toolkits.BattleSystem
         /// </summary>
         public int Height { get; }
         /// <summary>
-        /// Корневой Transform иерархии сущностей боевой арены.
+        /// Корневой transform иерархии сущностей боевой арены.
         /// </summary>
         public Transform EntitiesRoot { get; }
         public Tilemap Tilemap { get; }
@@ -50,14 +50,41 @@ namespace IUP.Toolkits.BattleSystem
         public Vector3 GetCellLocalPosition(Vector2Int coordinate);
 
         /// <summary>
+        /// Возвращает локальную позицию клетки относительно Root.
+        /// </summary>
+        /// <param name="x">X-компонента координаты клетки.</param>
+        /// <param name="y">Y-компонента координаты клетки.</param>
+        /// <returns>Локальная позиция клетки относительно Root.</returns>
+        public Vector3 GetCellLocalPosition(int x, int y);
+
+        /// <summary>
         /// Возвращает мировую позицию клетки.
         /// </summary>
         /// <param name="coordinate">Координата клетки.</param>
         /// <returns>Мировая позиция клетки.</returns>
         public Vector3 GetCellWorldPosition(Vector2Int coordinate);
 
+        /// <summary>
+        /// Возвращает мировую позицию клетки.
+        /// </summary>
+        /// <param name="x">X-компонента координаты клетки.</param>
+        /// <param name="y">Y-компонента координаты клетки.</param>
+        /// <returns>Мировая позиция клетки.</returns>
+        public Vector3 GetCellWorldPosition(int x, int y);
+
+        /// <summary>
+        /// Переводит координату клетки в координату тайла.
+        /// </summary>
+        /// <param name="coordinate">Координата клетки.</param>
+        /// <returns>Возвращает координату тайла.</returns>
         public Vector3Int CellCoordinateToTileCoordinate(Vector2Int coordinate);
 
+        /// <summary>
+        /// Переводит координату клетки в координату тайла.
+        /// </summary>
+        /// <param name="x">X-компонента координаты клетки.</param>
+        /// <param name="y">Y-компонента координаты клетки.</param>
+        /// <returns>Возвращает координату тайла.</returns>
         public Vector3Int CellCoordinateToTileCoordinate(int x, int y);
     }
 }

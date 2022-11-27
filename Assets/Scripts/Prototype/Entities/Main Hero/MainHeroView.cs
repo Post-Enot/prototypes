@@ -1,5 +1,5 @@
 using IUP.Toolkits.Direction2D;
-using System;
+using System.Data;
 using UnityEngine;
 
 namespace IUP.BattleSystemPrototype
@@ -7,47 +7,54 @@ namespace IUP.BattleSystemPrototype
     [RequireComponent(typeof(Animator))]
     public sealed class MainHeroView : MonoBehaviour
     {
-
-        public event Action MoveAnimationEnded;
-
-        private const string _mainHeroMove = "main-hero__move";
         private Animator _animator;
+        private MainHeroPresenter _mainHero;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            var clips = _animator.runtimeAnimatorController.animationClips;
-            foreach (AnimationClip clip in clips)
-            {
-                if (clip.name == _mainHeroMove)
-                {
-                    AnimationEvent animationEvent = new()
-                    {
-                        time = clip.length,
-                        functionName = nameof(InvokeAnimationEvent),
-                        stringParameter = _mainHeroMove
-                    };
-                    clip.AddEvent(animationEvent);
-                }
-            }
-        }
-
-        public void InvokeAnimationEvent(string test)
-        {
-            switch (test)
-            {
-                case _mainHeroMove:
-                    MoveAnimationEnded?.Invoke();
-                    return;
-
-                default:
-                    throw new NotImplementedException();
-            }
+            _mainHero = GetComponent<MainHeroPresenter>();
+            _mainHero.MoveStarted += StartMoveAnimation;
         }
 
         public void StartMoveAnimation(Direction direction)
         {
+            SetTurnDirection(direction);
             _animator.SetTrigger("move");
+        }
+
+        private void SetTurnDirection(Direction direction)
+        {
+            ResetTurnDirectionParams();
+            switch (direction)
+            {
+                case Direction.Up:
+                    _animator.SetBool("is turn up", true);
+                    break;
+
+                case Direction.Down:
+                    _animator.SetBool("is turn down", true);
+                    break;
+
+                case Direction.Left:
+                    _animator.SetBool("is turn left", true);
+                    break;
+
+                case Direction.Right:
+                    _animator.SetBool("is turn right", true);
+                    break;
+
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(direction));
+            }
+        }
+
+        private void ResetTurnDirectionParams()
+        {
+            _animator.SetBool("is turn up", false);
+            _animator.SetBool("is turn down", false);
+            _animator.SetBool("is turn left", false);
+            _animator.SetBool("is turn right", false);
         }
     }
 }

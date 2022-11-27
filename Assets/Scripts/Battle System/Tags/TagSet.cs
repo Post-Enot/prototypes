@@ -29,6 +29,14 @@ namespace IUP.Toolkits.BattleSystem
             return _tags.Add(tag);
         }
 
+        public void AddTags(params string[] tags)
+        {
+            foreach (string tag in tags)
+            {
+                _ = _tags.Add(tag);
+            }
+        }
+
         public bool RemoveTag(string tag)
         {
             return _tags.Remove(tag);

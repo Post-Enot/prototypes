@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IUP.Toolkits.BattleSystem
@@ -15,6 +16,10 @@ namespace IUP.Toolkits.BattleSystem
         /// Высота боевой арены в клетках.
         /// </summary>
         public int Height { get; }
+        /// <summary>
+        /// Readonly-коллекция всех сущностей, находящихся на боевом поле.
+        /// </summary>
+        public IReadOnlyCollection<ICellEntity> Entities { get; }
 
         /// <summary>
         /// Индексатор для доступа к клеткам боевой арены.

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9486543c2b662e646af3bb0f37089a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _landTile: {fileID: 11400000, guid: ad1f40376a6ccec4aadb87fb5d80fb9f, type: 2}
-  _borderTile: {fileID: 11400000, guid: 9971f811fb9660d419079d13a14cb839, type: 2}
+  _landTile: {fileID: 11400000, guid: 6295fb7f1bf40c94c88d9fe23c3ece72, type: 2}
+  _borderTile: {fileID: 11400000, guid: 9c6fc7c9b69c40449b7b2b0f234ea975, type: 2}

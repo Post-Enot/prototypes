@@ -1,10 +1,6 @@
 .unity-list-view {
     flex-grow: 1;
     flex-shrink: 1;
-    margin-left: 3px;
-    margin-right: 5px;
-    margin-top: 4px;
-    margin-bottom: 5px;
 }
 
 .unity-list-view__size-field {
@@ -118,4 +114,22 @@
     margin-right: 0;
     margin-top: 1px;
     margin-bottom: 1px;
+}
+
+.unity-foldout__content {
+    margin-left: 3px;
+    margin-right: 5px;
+    margin-top: 4px;
+    margin-bottom: 5px;
+}
+
+.cm-resize-rule-enum-field {
+    width: 105px;
+    max-width: 105px;
+    min-width: 105px;
+}
+
+.cm-resize-side-int-field {
+    margin-right: 3px;
+    margin-left: 0;
 }

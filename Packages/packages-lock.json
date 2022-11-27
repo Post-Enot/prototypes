@@ -20,6 +20,12 @@
       "source": "local",
       "dependencies": {}
     },
+    "com.iup.generale-purpose-utilities": {
+      "version": "file:C:/Unity Projects/Unity Packages/general-purpose-utilities/General Purpose Utilities",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.iup.matrices": {
       "version": "file:C:/Unity Projects/Unity Packages/matrices/Matrices",
       "depth": 0,

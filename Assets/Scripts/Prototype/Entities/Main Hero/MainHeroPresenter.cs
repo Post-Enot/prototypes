@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace IUP.BattleSystemPrototype
 {
-    public sealed class MainHeroPresenter : MonoBehaviour, ICellEntityPresenter, ITurnQueueMember
+    public sealed class MainHeroPresenter : CellEntityPresenter, ITurnQueueMember
     {
         [SerializeField] private float _movingDurationInSeconds;
         [SerializeField] private AnimationCurve _curve;
@@ -57,23 +57,28 @@ namespace IUP.BattleSystemPrototype
             }
         }
 
-        public ICellEntity Entity => _mainHero;
-        public IBattleArenaPresenter BattleArenaPresenter { get; private set; }
-        public Transform Transform => transform;
-        public Vector2Int Coordinate => Entity.Coordinate;
+        public override ICellEntity Entity => _mainHero;
         public int TurnPriority { get; private set; }
         /// <summary>
         /// Время в секундах на то, чтобы сделать ход.
         /// </summary>
         public float TimeInSecondsForMakeTurn { get; } = 3f;
+        public Direction TurnDirection { get; private set; } = Direction.Down;
+
+        public event Action<Direction> MoveStarted;
 
         private InputFacade _inputFacade;
         private InputActions _inputActions;
         private MainHero _mainHero;
-        private IEnumerator _currentAction;
+        private EntityTurns _entityTurns;
+        private EntityTurn _waitTurn;
+        private IBattleArenaPresenter _arenaPresenter;
 
         private void Awake()
         {
+            _waitTurn = new EntityTurn(() => FoveRoutine());
+            _entityTurns = new EntityTurns(_waitTurn, turnsCount: 1);
+            _entityTurns.TurnCompleted += DetermineNextTurn;
             _inputActions = new InputActions();
             _inputFacade = new InputFacade(_inputActions);
         }
@@ -88,44 +93,40 @@ namespace IUP.BattleSystemPrototype
             _inputActions.Disable();
         }
 
-        public void Init(IBattleArenaPresenter battleArenaPresenter, Vector2Int coordinate)
+        public override void Init(
+            IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
+            Vector2Int coordinate)
         {
-            Init(battleArenaPresenter, coordinate.x, coordinate.y);
+            Init(battleArenaPresenter, eventBus, coordinate.x, coordinate.y);
         }
 
-        public void Init(IBattleArenaPresenter battleArenaPresenter, int x, int y)
+        public override void Init(
+            IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
+            int x,
+            int y)
         {
-            BattleArenaPresenter = battleArenaPresenter;
-            _mainHero = new MainHero(x, y, battleArenaPresenter.BattleArena);
+            _arenaPresenter = battleArenaPresenter;
+            _mainHero = new MainHero(x, y, _arenaPresenter.BattleArena);
             TurnPriority = UnityEngine.Random.Range(1, 10);
         }
 
         public IEnumerator MakeTurn()
         {
             EnableInputHandling();
-            _currentAction = WaitTurn();
-            while (_currentAction.MoveNext())
-            {
-                yield return _currentAction.Current;
-            }
+            yield return _entityTurns.MakeTurn();
         }
 
-        private IEnumerator Move(Direction direction)
+        private void DetermineNextTurn(int turnsLeft)
         {
-            Vector2Int startPosition = Entity.Coordinate;
-            if (_mainHero.MoveOn(direction))
+            if (turnsLeft > 0)
             {
-                Vector2Int finalPosition = startPosition + direction.ToVector2Int();
-                yield return YieldInstructions.Move(
-                    transform,
-                    BattleArenaPresenter.GetCellWorldPosition(startPosition),
-                    BattleArenaPresenter.GetCellWorldPosition(finalPosition),
-                    _curve,
-                    _movingDurationInSeconds);
+                _entityTurns.ReturnToFoveRoutine();
             }
         }
 
-        private IEnumerator WaitTurn()
+        private IEnumerator FoveRoutine()
         {
             float startTime = Time.time;
             float timeLeft;
@@ -135,6 +136,23 @@ namespace IUP.BattleSystemPrototype
                 timeLeft = Time.time - startTime;
             }
             while (timeLeft < TimeInSecondsForMakeTurn);
+            _entityTurns.TurnsLeft = 0;
+        }
+
+        private IEnumerator Move(Direction direction)
+        {
+            Vector2Int startPosition = Entity.Coordinate;
+            TurnDirection = direction;
+            _mainHero.MoveOn(direction);
+            MoveStarted?.Invoke(direction);
+            Vector2Int finalPosition = startPosition + direction.ToVector2Int();
+            yield return YieldInstructions.Move(
+                transform,
+                _arenaPresenter.GetCellWorldPosition(startPosition),
+                _arenaPresenter.GetCellWorldPosition(finalPosition),
+                _curve,
+                _movingDurationInSeconds);
+            _entityTurns.TurnsLeft -= 1;
         }
 
         private void TryMoveOnDirection(Direction direction)
@@ -142,7 +160,8 @@ namespace IUP.BattleSystemPrototype
             if (_mainHero.CanMoveOn(direction))
             {
                 DisableInputHandling();
-                _currentAction = Move(direction);
+                EntityTurn moveTurn = new(() => Move(direction));
+                _entityTurns.SetTurnRoutine(moveTurn);
             }
         }
 

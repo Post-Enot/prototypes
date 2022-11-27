@@ -3,22 +3,27 @@ using UnityEngine;
 
 namespace IUP.BattleSystemPrototype
 {
-    public sealed class AbyssPresenter : MonoBehaviour, ICellEntityPresenter
+    public sealed class AbyssPresenter : CellEntityPresenter
     {
-        public ICellEntity Entity { get; private set; }
-        public IBattleArenaPresenter BattleArenaPresenter { get; private set; }
-        public Transform Transform => transform;
-        public Vector2Int Coordinate => Entity.Coordinate;
+        public override ICellEntity Entity => _abyss;
 
-        public void Init(IBattleArenaPresenter battleArenaPresenter, Vector2Int coordinate)
+        private Abyss _abyss;
+
+        public override void Init(
+            IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
+            Vector2Int coordinate)
         {
-            BattleArenaPresenter = battleArenaPresenter;
-            Entity = new Abyss(coordinate);
+            _abyss = new Abyss(coordinate, battleArenaPresenter.BattleArena);
         }
 
-        public void Init(IBattleArenaPresenter battleArenaPresenter, int x, int y)
+        public override void Init(
+            IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
+            int x,
+            int y)
         {
-            Init(battleArenaPresenter, new Vector2Int(x, y));
+            Init(battleArenaPresenter, eventBus, new Vector2Int(x, y));
         }
     }
 }

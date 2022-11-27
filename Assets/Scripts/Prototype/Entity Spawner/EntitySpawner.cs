@@ -4,32 +4,31 @@ using UnityEngine;
 
 namespace IUP.BattleSystemPrototype
 {
-    [Serializable]
-    public sealed class EntitySpawner : IEntitySpawner
+    public sealed class EntitySpawner : AbstractEntitySpawner
     {
         [SerializeField] private GameObject _landEntityPrefab;
         [SerializeField] private GameObject _mainHeroEntityPrefab;
         [SerializeField] private GameObject _abyssEntityPrefab;
 
-        public event Action<ICellEntityPresenter> EntitySpawned;
-
-        public ICellEntityPresenter SpawnEntityByMappingKey(
+        public override ICellEntityPresenter SpawnEntityByMappingKey(
             string mappingKey,
             IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
             Vector2Int coordinate)
         {
-            return SpawnEntityByMappingKey(mappingKey, battleArenaPresenter, coordinate.x, coordinate.y);
+            return SpawnEntityByMappingKey(mappingKey, battleArenaPresenter, eventBus, coordinate.x, coordinate.y);
         }
 
-        public ICellEntityPresenter SpawnEntityByMappingKey(
+        public override ICellEntityPresenter SpawnEntityByMappingKey(
             string mappingKey,
             IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
             int x,
             int y)
         {
             ICellEntityPresenter SpawnEntity(GameObject entityPrefab)
             {
-                return this.SpawnEntity(entityPrefab, battleArenaPresenter, x, y);
+                return this.SpawnEntity(entityPrefab, battleArenaPresenter, eventBus, x, y);
             }
 
             return mappingKey switch
@@ -45,14 +44,19 @@ namespace IUP.BattleSystemPrototype
         private ICellEntityPresenter SpawnEntity(
             GameObject entityPrefab,
             IBattleArenaPresenter battleArenaPresenter,
+            IBattleEventBus eventBus,
             int x,
             int y)
         {
-            GameObject entityObject = UnityEngine.Object.Instantiate(entityPrefab);
+            GameObject entityObject = Instantiate(entityPrefab);
             var entityPresenter = entityObject.GetComponent<ICellEntityPresenter>();
-            entityPresenter.Init(battleArenaPresenter, x, y);
+            entityPresenter.Init(battleArenaPresenter, eventBus, x, y);
             battleArenaPresenter.SetEntityOnCell(entityPresenter, x, y);
-            EntitySpawned?.Invoke(entityPresenter);
+            if (entityPresenter is ITurnQueueMember member)
+            {
+                SpawnTurnQueueMemberContext context = new(member);
+                eventBus.InvokeEventCallbacks(context);
+            }
             return entityPresenter;
         }
     }

@@ -13,196 +13,148 @@ MonoBehaviour:
   m_Name: Battle Arena Pattern
   m_EditorClassIdentifier: 
   _cellarMap:
-    rid: 3484217601712455698
+    rid: 3484217687194468365
   _viewPalette:
-    rid: 3484217601712455699
+    rid: 3484217687194468366
   _viewLayers:
-    rid: 3484217601712455700
+    rid: 3484217687194468367
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 3484217601712455698
+    - rid: 3484217687194468365
       type: {class: CellarMap, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _palette:
-          rid: 3484217601712455701
+          rid: 3484217687194468368
         _layers:
-          rid: 3484217601712455702
-    - rid: 3484217601712455699
+          rid: 3484217687194468369
+    - rid: 3484217687194468366
       type: {class: ViewPalette, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _selectedCellTypeViewData:
-          rid: 3484217601712455709
+          rid: 3484217687194468376
         _palette:
-          rid: 3484217601712455701
+          rid: 3484217687194468368
         _skeys:
-        - rid: 3484217601712455703
-        - rid: 3484217601712455710
+        - rid: 3484217687194468370
+        - rid: 3484217687194468377
         _svalues:
-        - rid: 3484217601712455704
-        - rid: 3484217601712455709
+        - rid: 3484217687194468371
+        - rid: 3484217687194468376
         _viewDataOrder:
-        - rid: 3484217601712455704
-        - rid: 3484217601712455709
-    - rid: 3484217601712455700
+        - rid: 3484217687194468371
+        - rid: 3484217687194468376
+    - rid: 3484217687194468367
       type: {class: ViewLayers, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _layers:
-          rid: 3484217601712455702
+          rid: 3484217687194468369
         _viewData:
-        - rid: 3484217601712455705
-        - rid: 3484217601712455707
+        - rid: 3484217687194468372
+        - rid: 3484217687194468374
         _activeLayerViewData:
-          rid: 3484217601712455707
-    - rid: 3484217601712455701
+          rid: 3484217687194468374
+    - rid: 3484217687194468368
       type: {class: Palette, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _scellTypes:
-        - rid: 3484217601712455703
-        - rid: 3484217601712455710
-    - rid: 3484217601712455702
+        - rid: 3484217687194468370
+        - rid: 3484217687194468377
+    - rid: 3484217687194468369
       type: {class: CellarMapLayers, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
-        _layersWidth: 10
+        _layersWidth: 5
         _layersHeight: 10
         _layers:
-        - rid: 3484217601712455706
-        - rid: 3484217601712455708
-    - rid: 3484217601712455703
+        - rid: 3484217687194468373
+        - rid: 3484217687194468375
+    - rid: 3484217687194468370
       type: {class: CellType, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _typeName: land
-    - rid: 3484217601712455704
+    - rid: 3484217687194468371
       type: {class: CellTypeViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
-        _color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+        _color: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
         _type:
-          rid: 3484217601712455703
-    - rid: 3484217601712455705
+          rid: 3484217687194468370
+    - rid: 3484217687194468372
       type: {class: LayerViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _layerIndex: 0
         _layerName: surface
+        _color: {r: 0, g: 0, b: 0, a: 1}
         _layer:
-          rid: 3484217601712455706
-    - rid: 3484217601712455706
+          rid: 3484217687194468373
+    - rid: 3484217687194468373
       type: {class: CellarMapLayer, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
-        _serializableWidth: 10
+        _serializableWidth: 5
         _serializableLayer:
         - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
         - rid: -2
         - rid: -2
         - rid: -2
         - rid: -2
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
-        - rid: 3484217601712455703
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
-        - rid: 3484217601712455703
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
-        - rid: 3484217601712455703
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
         - rid: -2
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
+        - rid: 3484217687194468370
         - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
         - rid: -2
         - rid: -2
         - rid: -2
         - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
         - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: 3484217601712455703
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-    - rid: 3484217601712455707
+    - rid: 3484217687194468374
       type: {class: LayerViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _layerIndex: 1
         _layerName: entities
+        _color: {r: 0.43529415, g: 0, b: 0, a: 1}
         _layer:
-          rid: 3484217601712455708
-    - rid: 3484217601712455708
+          rid: 3484217687194468375
+    - rid: 3484217687194468375
       type: {class: CellarMapLayer, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
-        _serializableWidth: 10
+        _serializableWidth: 5
         _serializableLayer:
         - rid: -2
         - rid: -2
@@ -239,27 +191,9 @@ MonoBehaviour:
         - rid: -2
         - rid: -2
         - rid: -2
-        - rid: 3484217601712455710
         - rid: -2
         - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: 3484217601712455710
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: 3484217601712455710
+        - rid: 3484217687194468377
         - rid: -2
         - rid: -2
         - rid: -2
@@ -272,45 +206,13 @@ MonoBehaviour:
         - rid: -2
         - rid: -2
         - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-        - rid: -2
-    - rid: 3484217601712455709
+    - rid: 3484217687194468376
       type: {class: CellTypeViewData, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
-        _color: {r: 0.46226418, g: 0, b: 0, a: 1}
+        _color: {r: 0.4339623, g: 0, b: 0, a: 1}
         _type:
-          rid: 3484217601712455710
-    - rid: 3484217601712455710
+          rid: 3484217687194468377
+    - rid: 3484217687194468377
       type: {class: CellType, ns: IUP.Toolkits.CellarMaps, asm: iup.cellarmaps.runtime}
       data:
         _typeName: main-hero

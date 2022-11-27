@@ -7,36 +7,44 @@ namespace IUP.Toolkits.BattleSystem
     public sealed class BattleLoop : IBattleLoop
     {
         public BattleLoop(
-            IEntitySpawner entitySpawner,
+            IBattleEventBus eventBus,
             MonoBehaviour coroutinePerformer,
             float minTurnDurationInSecond)
         {
-            _entitySpawner = entitySpawner;
+            _eventBus = eventBus;
+            _eventBus.RegisterEventCallback<SpawnTurnQueueMemberContext>(AddMemberInTurnQueue);
             MinTurnDurationInSecond = minTurnDurationInSecond;
             _iterationRoutine = new UniqueCoroutine(coroutinePerformer, () => Iteration());
-            _entitySpawner.EntitySpawned += HandleEntitySpawnedEvent;
-        }
-
-        ~BattleLoop()
-        {
-            _entitySpawner.EntitySpawned -= HandleEntitySpawnedEvent;
         }
 
         public bool IsIterating { get; private set; }
         public float MinTurnDurationInSecond { get; }
 
         private readonly TurnQueue _turnQueue = new();
-        private readonly IEntitySpawner _entitySpawner;
         private readonly UniqueCoroutine _iterationRoutine;
+        private readonly IBattleEventBus _eventBus;
 
         public void StartIteration()
         {
             IsIterating = true;
+            _eventBus.InvokeEventCallbacks(GeneralBattleEvents.BattleLoopIterationStarted);
             if (_turnQueue.MembersCount == 0)
             {
                 return;
             }
             _iterationRoutine.Start();
+        }
+
+        public void StopIteration()
+        {
+            if (IsIterating)
+            {
+                if (_iterationRoutine.IsPerformed)
+                {
+                    _iterationRoutine.Stop();
+                }
+                _eventBus.InvokeEventCallbacks(GeneralBattleEvents.BattleLoopIterationStopped);
+            }
         }
 
         private IEnumerator Iteration()
@@ -55,16 +63,9 @@ namespace IUP.Toolkits.BattleSystem
             }
         }
 
-        private void HandleEntitySpawnedEvent(ICellEntityPresenter entityPresenter)
+        private void AddMemberInTurnQueue(SpawnTurnQueueMemberContext context)
         {
-            if (entityPresenter == null)
-            {
-                return;
-            }
-            if (entityPresenter is ITurnQueueMember member)
-            {
-                _turnQueue.AddMember(member);
-            }
+            _turnQueue.AddMember(context.Member);
             if (IsIterating && _turnQueue.MembersCount == 1 && !_iterationRoutine.IsPerformed)
             {
                 _iterationRoutine.Start();

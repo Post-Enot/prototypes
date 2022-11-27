@@ -12,22 +12,22 @@ namespace IUP.Toolkits.BattleSystem
             Tilemap tilemap)
         {
             BattleArena = battleArena;
-            CellSizeInUnit = cellSizeInUnit;
+            CellSize = cellSizeInUnit;
             EntitiesRoot = entitiesRoot;
             Tilemap = tilemap;
             tilemap.layoutGrid.cellSize = new Vector3(cellSizeInUnit, cellSizeInUnit);
             const float anchorMiddleShift = 0.5f;
             var tileAnchor = new Vector3()
             {
-                x = BattleArena.Width % 2 == 0 ? anchorMiddleShift : 0,
-                y = BattleArena.Height % 2 == 0 ? anchorMiddleShift : 0
+                x = BattleArena.Width.IsEven() ? anchorMiddleShift : 0,
+                y = BattleArena.Height.IsEven() ? anchorMiddleShift : 0
             };
             tilemap.tileAnchor = tileAnchor;
         }
 
         public int Width => BattleArena.Width;
         public int Height => BattleArena.Height;
-        public float CellSizeInUnit { get; }
+        public float CellSize { get; }
         public Transform EntitiesRoot { get; }
         public Tilemap Tilemap { get; }
         public IBattleArena BattleArena { get; }
@@ -39,8 +39,8 @@ namespace IUP.Toolkits.BattleSystem
 
         public void SetEntityOnCell(ICellEntityPresenter entityPresenter, int x, int y)
         {
-            entityPresenter.Transform.parent = EntitiesRoot;
-            entityPresenter.Transform.position = GetCellWorldPosition(x, y);
+            entityPresenter.transform.parent = EntitiesRoot;
+            entityPresenter.transform.position = GetCellWorldPosition(x, y);
             if (!BattleArena[x, y].PutEntity(entityPresenter.Entity))
             {
                 throw new System.InvalidOperationException("Сущность не может быть помещена в клетку по " +
@@ -56,8 +56,8 @@ namespace IUP.Toolkits.BattleSystem
         public Vector3 GetCellLocalPosition(int x, int y)
         {
             return new Vector3(
-                x: -(Width / 2f) + (CellSizeInUnit / 2f) + (x * CellSizeInUnit),
-                y: -(Height / 2f) + (CellSizeInUnit / 2f) + (y * CellSizeInUnit));
+                x: -(Width / 2f) + (CellSize / 2f) + (x * CellSize),
+                y: -(Height / 2f) + (CellSize / 2f) + (y * CellSize));
         }
 
         public Vector3 GetCellWorldPosition(Vector2Int coordinate)
@@ -80,7 +80,7 @@ namespace IUP.Toolkits.BattleSystem
         {
             return new Vector3Int(
                 x: -(Width / 2) + x,
-                y: -(Height / 2) + y, // Прибавление единицы необходимо для правильного сопоставления клеток.
+                y: -(Height / 2) + y,
                 z: 0);
         }
     }

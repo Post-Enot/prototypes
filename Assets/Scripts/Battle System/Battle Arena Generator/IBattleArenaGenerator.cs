@@ -15,8 +15,12 @@ namespace IUP.Toolkits.BattleSystem
         /// Генерирует боевую арену на основе паттерна.
         /// </summary>
         /// <param name="arenaPattern">Паттерн боевой арены.</param>
-        /// <param name="arenaRoot">Корневой Transform иерархии объектов боевой арены.</param>
+        /// <param name="entitiesRoot">Корневой transform иерархии для сущностей боевой арены.</param>
         /// <returns></returns>
-        public IBattleArenaPresenter Generate(CellarMapAsset arenaPattern, Transform arenaRoot, Tilemap tilemap);
+        public IBattleArenaPresenter Generate(
+            CellarMapAsset arenaPattern,
+            IBattleEventBus eventBus,
+            Transform entitiesRoot,
+            Tilemap tilemap);
     }
 }
