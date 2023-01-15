@@ -1,6 +1,5 @@
 using IUP.Toolkits.BattleSystem;
 using IUP.Toolkits.Direction2D;
-using System;
 using UnityEngine;
 
 namespace IUP.BattleSystemPrototype
@@ -26,8 +25,6 @@ namespace IUP.BattleSystemPrototype
         public IBattleArena BattleArena { get; }
         public IReadonlyTagSet Tags => _tags;
 
-        public event Action<ICellEntity> Destroyed;
-
         private readonly TagSet _tags = new();
 
         public bool CanMoveOn(Direction direction)
@@ -47,11 +44,6 @@ namespace IUP.BattleSystemPrototype
         public bool OnCanPutEntity(ICellEntity entity)
         {
             return !entity.Tags.HasTag(EntitiesTags.TakesUpSurface);
-        }
-
-        private void Destroy()
-        {
-            Destroyed?.Invoke(this);
         }
     }
 }

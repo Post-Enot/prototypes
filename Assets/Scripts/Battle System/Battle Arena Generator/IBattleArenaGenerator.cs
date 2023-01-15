@@ -18,7 +18,7 @@ namespace IUP.Toolkits.BattleSystem
         /// <param name="entitiesRoot">Корневой transform иерархии для сущностей боевой арены.</param>
         /// <returns></returns>
         public IBattleArenaPresenter Generate(
-            CellarMapAsset arenaPattern,
+            IReadOnlyCellarMap arenaPattern,
             IBattleEventBus eventBus,
             Transform entitiesRoot,
             Tilemap tilemap);

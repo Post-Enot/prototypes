@@ -27,16 +27,9 @@ namespace IUP.BattleSystemPrototype
 
         private readonly TagSet _tags = new();
 
-        public event Action<ICellEntity> Destroyed;
-
         public bool OnCanPutEntity(ICellEntity entity)
         {
             return entity.Tags.HasTag(EntitiesTags.Flying);
-        }
-
-        private void Destroy()
-        {
-            Destroyed?.Invoke(this);
         }
     }
 }

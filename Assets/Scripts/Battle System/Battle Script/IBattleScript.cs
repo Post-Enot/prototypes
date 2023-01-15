@@ -24,7 +24,7 @@ namespace IUP.Toolkits.BattleSystem
             IEntitySpawner entitySpawner);
 
         /// <summary>
-        /// Запускает выполнение сценария боя.
+        /// Запускает сценарий боевой сцены.
         /// </summary>
         public void Start();
     }

@@ -1,0 +1,202 @@
+.unity-base-field {
+    padding-bottom: 2px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-right: 3px;
+}
+
+.unity-base-field__label {
+    width: 0;
+    flex-shrink: 1;
+    min-width: 120px;
+}
+
+.unity-button {
+    margin-left: 0;
+    margin-right: 3px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.unity-foldout__toggle {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.unity-list-view {
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.unity-list-view__size-field {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom: 0;
+}
+
+.unity-list-view__foldout-header > .unity-foldout__toggle {
+    background-color: rgb(34, 34, 34);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-bottom: 2px;
+}
+
+.unity-foldout__input {
+    background-color: rgb(34, 34, 34);
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.unity-foldout__content {
+    padding-bottom: 2px;
+}
+
+.cm-cellar-map {
+    align-items: flex-start;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: flex-start;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    flex-direction: column-reverse;
+}
+
+.cm-cellar-map-row {
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.cm-cellar-map-cell {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 20px;
+    height: 20px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.cm-apply-revert-block {
+    flex-direction: row;
+}
+
+.cm-resize-block__width-block {
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+.cm-resize-block__height-block {
+    flex-direction: row;
+}
+
+.cm-resize-block__width-offset-field {
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+.cm-resize-block__height-offset-field {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.cm-resize-block__width-resize-rule-field {
+    width: 100px;
+}
+
+.cm-resize-block__height-resize-rule-field {
+    width: 100px;
+}
+
+.unity-toolbar {
+    background-color: rgb(37, 37, 37);
+}
+
+.cm-active-cell-type-indicator {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.cm-active-cell-type-indicator__label {
+    flex-grow: 1;
+}
+
+.cm-active-cell-type-indicator__indicator {
+    margin-right: 3px;
+}
+
+.cm-active-layer-indicator {
+    flex-direction: row;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+
+.cm-active-layer-indicator__label {
+    flex-grow: 1;
+}
+
+.cm-active-layer-indicator__indicator {
+    margin-right: 3px;
+}
+
+.cm-cell-type-indicator {
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(35, 35, 35);
+    border-right-color: rgb(35, 35, 35);
+    border-top-color: rgb(35, 35, 35);
+    border-bottom-color: rgb(35, 35, 35);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.cm-layer-indicator {
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(35, 35, 35);
+    border-right-color: rgb(35, 35, 35);
+    border-top-color: rgb(35, 35, 35);
+    border-bottom-color: rgb(35, 35, 35);
+}

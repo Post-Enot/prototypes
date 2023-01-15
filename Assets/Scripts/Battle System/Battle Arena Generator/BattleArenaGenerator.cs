@@ -14,20 +14,20 @@ namespace IUP.Toolkits.BattleSystem
         public IEntitySpawner EntitySpawner { get; }
 
         public IBattleArenaPresenter Generate(
-            CellarMapAsset arenaPattern,
+            IReadOnlyCellarMap arenaPattern,
             IBattleEventBus eventBus,
             Transform arenaRoot,
             Tilemap tilemap)
         {
-            var battleArena = new BattleArena(arenaPattern.Map.Width, arenaPattern.Map.Height, eventBus);
+            var battleArena = new BattleArena(arenaPattern.Width, arenaPattern.Height, eventBus);
             var battleArenaPresenter = new BattleArenaPresenter(battleArena, 1, arenaRoot, tilemap);
-            for (int layerIndex = 0; layerIndex < arenaPattern.ViewLayers.LayersCount; layerIndex += 1)
+            for (int layerIndex = 0; layerIndex < arenaPattern.LayersCount; layerIndex += 1)
             {
-                for (int y = 0; y < arenaPattern.Map.Height; y += 1)
+                for (int y = 0; y < arenaPattern.Height; y += 1)
                 {
-                    for (int x = 0; x < arenaPattern.Map.Width; x += 1)
+                    for (int x = 0; x < arenaPattern.Width; x += 1)
                     {
-                        string mappingKey = arenaPattern.Map[layerIndex][x, y]?.TypeName;
+                        string mappingKey = arenaPattern[layerIndex][x, y].MappingKey;
                         // Пустые клетки расставляются только по первому (0) слою.
                         if (mappingKey == null && layerIndex != 0)
                         {

@@ -11,6 +11,9 @@ namespace IUP.Toolkits.BattleSystem
             _arena = new Matrix<ICell>(width, height);
             _arena.InitAllElements((int x, int y) => new Cell(this, x, y));
             _eventBus = eventBus;
+            _eventBus.RegisterEventCallback(
+                GeneralBattleEvents.BattleLoopIterationStarted,
+                InitEntitiesSet);
             _eventBus.RegisterEventCallback<EntityDestroyedContext>(RemoveEntityFromSet);
         }
 
@@ -19,7 +22,7 @@ namespace IUP.Toolkits.BattleSystem
         public IReadOnlyCollection<ICellEntity> Entities => _entities;
 
         private readonly Matrix<ICell> _arena;
-        private readonly HashSet<ICellEntity> _entities;
+        private readonly HashSet<ICellEntity> _entities = new();
         private readonly IBattleEventBus _eventBus;
 
         public ICell this[Vector2Int coordinate] => this[coordinate.x, coordinate.y];

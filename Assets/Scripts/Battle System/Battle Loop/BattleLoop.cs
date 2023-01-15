@@ -14,14 +14,14 @@ namespace IUP.Toolkits.BattleSystem
             _eventBus = eventBus;
             _eventBus.RegisterEventCallback<SpawnTurnQueueMemberContext>(AddMemberInTurnQueue);
             MinTurnDurationInSecond = minTurnDurationInSecond;
-            _iterationRoutine = new UniqueCoroutine(coroutinePerformer, () => Iteration());
+            _iterationRoutine = new CoroutineShell(coroutinePerformer, Iteration);
         }
 
         public bool IsIterating { get; private set; }
         public float MinTurnDurationInSecond { get; }
 
         private readonly TurnQueue _turnQueue = new();
-        private readonly UniqueCoroutine _iterationRoutine;
+        private readonly CoroutineShell _iterationRoutine;
         private readonly IBattleEventBus _eventBus;
 
         public void StartIteration()

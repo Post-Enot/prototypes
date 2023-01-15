@@ -1,96 +1,45 @@
-using IUP.BattleSystemPrototype.Input;
-using IUP.Toolkits;
+using System.Collections;
 using IUP.Toolkits.BattleSystem;
 using IUP.Toolkits.Direction2D;
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace IUP.BattleSystemPrototype
 {
     public sealed class MainHeroPresenter : CellEntityPresenter, ITurnQueueMember
     {
-        [SerializeField] private float _movingDurationInSeconds;
-        [SerializeField] private AnimationCurve _curve;
-
-        public sealed class InputFacade
-        {
-            public InputFacade(InputActions inputActions)
-            {
-                _inputActions = inputActions;
-                _inputActions.MainHeroBattleArenaControl.DirectionUp.started += DirectionUp_started;
-                _inputActions.MainHeroBattleArenaControl.DirectionDown.started += DirectionDown_started;
-                _inputActions.MainHeroBattleArenaControl.DirectionLeft.started += DirectionLeft_started;
-                _inputActions.MainHeroBattleArenaControl.DirectionRight.started += DirectionRight_started;
-            }
-
-            ~InputFacade()
-            {
-                _inputActions.MainHeroBattleArenaControl.DirectionUp.started -= DirectionUp_started;
-                _inputActions.MainHeroBattleArenaControl.DirectionDown.started -= DirectionDown_started;
-                _inputActions.MainHeroBattleArenaControl.DirectionLeft.started -= DirectionLeft_started;
-                _inputActions.MainHeroBattleArenaControl.DirectionRight.started -= DirectionRight_started;
-            }
-
-            public event Action<Direction> MovedOnDirection;
-
-            private readonly InputActions _inputActions;
-
-            private void DirectionRight_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
-            {
-                MovedOnDirection?.Invoke(Direction.Right);
-            }
-
-            private void DirectionLeft_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
-            {
-                MovedOnDirection?.Invoke(Direction.Left);
-            }
-
-            private void DirectionDown_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
-            {
-                MovedOnDirection?.Invoke(Direction.Down);
-            }
-
-            private void DirectionUp_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
-            {
-                MovedOnDirection?.Invoke(Direction.Up);
-            }
-        }
-
-        public override ICellEntity Entity => _mainHero;
+        public override ICellEntity Entity => _model;
         public int TurnPriority { get; private set; }
         /// <summary>
         /// Время в секундах на то, чтобы сделать ход.
         /// </summary>
-        public float TimeInSecondsForMakeTurn { get; } = 3f;
+        public float TimeInSecondsForMakeTurn { get; } = 1.5f;
         public Direction TurnDirection { get; private set; } = Direction.Down;
+        public MainHeroView View => _view;
 
-        public event Action<Direction> MoveStarted;
-
-        private InputFacade _inputFacade;
-        private InputActions _inputActions;
-        private MainHero _mainHero;
+        private MainHeroInputFacade _inputFacade;
+        private MainHeroView _view;
+        private MainHero _model;
         private EntityTurns _entityTurns;
         private EntityTurn _waitTurn;
         private IBattleArenaPresenter _arenaPresenter;
+        private IBattleEventBus _eventBus;
 
         private void Awake()
         {
             _waitTurn = new EntityTurn(() => FoveRoutine());
             _entityTurns = new EntityTurns(_waitTurn, turnsCount: 1);
             _entityTurns.TurnCompleted += DetermineNextTurn;
-            _inputActions = new InputActions();
-            _inputFacade = new InputFacade(_inputActions);
+            _view = GetComponentInChildren<MainHeroView>();
         }
 
         private void OnEnable()
         {
-            _inputActions.Enable();
+            _inputFacade?.Enable();
         }
 
         private void OnDisable()
         {
-            _inputActions.Disable();
+            _inputFacade?.Disable();
         }
 
         public override void Init(
@@ -108,8 +57,12 @@ namespace IUP.BattleSystemPrototype
             int y)
         {
             _arenaPresenter = battleArenaPresenter;
-            _mainHero = new MainHero(x, y, _arenaPresenter.BattleArena);
-            TurnPriority = UnityEngine.Random.Range(1, 10);
+            _model = new MainHero(x, y, _arenaPresenter.BattleArena);
+            _inputFacade = new MainHeroInputFacade();
+            _inputFacade.Enable();
+            _inputFacade.MovedOnDirection += TryMoveOnDirection;
+            TurnPriority = Random.Range(1, 10);
+            _eventBus = eventBus;
         }
 
         public IEnumerator MakeTurn()
@@ -129,39 +82,40 @@ namespace IUP.BattleSystemPrototype
         private IEnumerator FoveRoutine()
         {
             float startTime = Time.time;
+            _eventBus.InvokeEventCallbacks(new TimedTurnStartedContext(TimeInSecondsForMakeTurn));
             float timeLeft;
             do
             {
                 yield return null;
                 timeLeft = Time.time - startTime;
+                _eventBus.InvokeEventCallbacks(new TimedTurnUpdatedContext(
+                    TimeInSecondsForMakeTurn - timeLeft));
             }
             while (timeLeft < TimeInSecondsForMakeTurn);
+            _eventBus.InvokeEventCallbacks(BattleEvents.TimedTurnEnded);
             _entityTurns.TurnsLeft = 0;
         }
 
         private IEnumerator Move(Direction direction)
         {
-            Vector2Int startPosition = Entity.Coordinate;
             TurnDirection = direction;
-            _mainHero.MoveOn(direction);
-            MoveStarted?.Invoke(direction);
-            Vector2Int finalPosition = startPosition + direction.ToVector2Int();
-            yield return YieldInstructions.Move(
-                transform,
-                _arenaPresenter.GetCellWorldPosition(startPosition),
-                _arenaPresenter.GetCellWorldPosition(finalPosition),
-                _curve,
-                _movingDurationInSeconds);
+            _model.MoveOn(direction);
+            yield return _view.StartMoveAnimation(direction);
             _entityTurns.TurnsLeft -= 1;
         }
 
         private void TryMoveOnDirection(Direction direction)
         {
-            if (_mainHero.CanMoveOn(direction))
+            if (_model.CanMoveOn(direction))
             {
                 DisableInputHandling();
                 EntityTurn moveTurn = new(() => Move(direction));
+                _eventBus.InvokeEventCallbacks(BattleEvents.TimedTurnEnded);
                 _entityTurns.SetTurnRoutine(moveTurn);
+            }
+            else
+            {
+                _view.StartAttackAnimation(direction);
             }
         }
 

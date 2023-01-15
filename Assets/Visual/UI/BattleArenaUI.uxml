@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Visual/UI/BattleArenaUI_StyleSheets.uss?fileID=7433441132597879392&amp;guid=f5819124000667249ad4af5e295fbec2&amp;type=3#BattleArenaUI_StyleSheets" />
+    <ui:VisualElement style="align-items: center; justify-content: flex-end; flex-grow: 1;">
+        <ui:VisualElement style="height: 20px; align-items: center; flex-direction: row; justify-content: center; width: 100%; background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/Ui-3.png?fileID=2034094529&amp;guid=e56eed2b5804c554ebd8daebbd2cfaf7&amp;type=3#ui__battle-arena__bottom-panel&apos;);">
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/ui-2.png?fileID=1649028506&amp;guid=a8f254514ecd80c48b83f8f871fc6234&amp;type=3#quick-access-slot&apos;); width: 15px; height: 15px; margin-left: 2.5px; margin-right: 2.5px;" />
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/ui-2.png?fileID=1649028506&amp;guid=a8f254514ecd80c48b83f8f871fc6234&amp;type=3#quick-access-slot&apos;); width: 15px; height: 15px; margin-left: 2.5px; margin-right: 2.5px;" />
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/ui-2.png?fileID=1649028506&amp;guid=a8f254514ecd80c48b83f8f871fc6234&amp;type=3#quick-access-slot&apos;); width: 15px; height: 15px; margin-left: 2.5px; margin-right: 15px;" />
+            <ui:ProgressBar name="time-bar" low-value="0" value="100" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 64px; height: 15px;" />
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/ui-2.png?fileID=1649028506&amp;guid=a8f254514ecd80c48b83f8f871fc6234&amp;type=3#quick-access-slot&apos;); width: 15px; height: 15px; margin-left: 15px; margin-right: 2.5px;" />
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/ui-2.png?fileID=1649028506&amp;guid=a8f254514ecd80c48b83f8f871fc6234&amp;type=3#quick-access-slot&apos;); width: 15px; height: 15px; margin-left: 2.5px; margin-right: 2.5px;" />
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Visual/Sprites/UI/ui-2.png?fileID=1649028506&amp;guid=a8f254514ecd80c48b83f8f871fc6234&amp;type=3#quick-access-slot&apos;); width: 15px; height: 15px; margin-left: 2.5px; margin-right: 2.5px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
